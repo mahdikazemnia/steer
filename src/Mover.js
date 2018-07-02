@@ -41,13 +41,36 @@ class Mover {
     // ---------------------------------------
 
     /**
-     * add's the seek force to the desiredDirection
+     * add's the seek force to the desiredVelocity
      * @param {V2D} point 
      */
     seek(point) {
         let force = point.clone().subtract(this.position).resize(this.seekRatio);
         this.seekVelocity.reset(force.x, force.y);
         this.desiredVelocity.add(force);
+    }
+
+    /**
+     * step's toward the point, return's callback(position)
+     * @param {V2D} point
+     * @param {Function} callback
+     */
+    stepToward(point, callback) {
+
+        // reset the desiredVelocity
+        this.desiredVelocity.reset(0, 0);
+
+        // seek
+        this.seek(point);
+
+        // set the velocity (no avoids for now)
+        this.currentVelocity.reset(this.desiredVelocity.x, this.desiredVelocity.y);
+
+        // step forward :)
+        this.position.add(this.currentVelocity);
+
+        // callback
+        callback(this.position);
     }
 
 
