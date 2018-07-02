@@ -1,0 +1,25 @@
+{
+  "name": "red-steer",
+  "version": "0.0.0",
+  "description": "Steering behaviour path-finding in js, based on http://www.red3d.com/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mahdikazemnia/red-steer.git"
+  },
+  "keywords": [
+    "steer",
+    "seek",
+    "avoid",
+    "path"
+  ],
+  "author": "Mahdi Kazemnia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mahdikazemnia/red-steer/issues"
+  },
+  "homepage": "https://github.com/mahdikazemnia/red-steer#readme"
+}
