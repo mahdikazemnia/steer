@@ -1,4 +1,5 @@
 const V2D = require('vectors-2d');
+const Mover = require('./Mover.js');
 
 class Map {
 
@@ -17,6 +18,18 @@ class Map {
         // set the size ([width,height])
         this.size = this.chain.map.size = settings.size;
 
+    }
+
+
+    /**
+     * make's a new mover and automatically add's it to the chain
+     * @param {Object} settings 
+     */
+    makeMover(settings) {
+
+         settings.position = new V2D(settings.x, settings.y);
+         return new Mover(settings, this.chain);
+ 
     }
 
 }
