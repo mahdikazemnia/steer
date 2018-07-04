@@ -15,6 +15,9 @@ class Mover {
         // position
         this.position = new V2D(settings.position);
 
+        // radius (size)
+        this.radius = settings.radius;
+
         // speed
         this.maxSpeed = settings.maxSpeed;
         this.minSpeed = settings.minSpeed;
@@ -39,6 +42,10 @@ class Mover {
 
     }
 
+    // ---------------------------------------
+    //          getters and setters
+    // ---------------------------------------
+    get stepSize() { return this.currentSpeed / this.stepRate; }
 
     // ---------------------------------------
     //              operations
