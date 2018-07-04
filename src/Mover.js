@@ -55,6 +55,30 @@ class Mover {
     }
 
     /**
+    * fetches the right avoidance and return's it
+    * @param {Obstacle} - {type:'...' , ...}
+    */
+    avoid(obstacle) {
+
+        // valid obstacle types
+        let types = ['Circle'];
+
+        // check if it's valid
+        if (types.includes(obstacle.type)) return this['avoid' + obstacle.type](obstacle);
+        return false;
+
+    }
+
+    /**
+     * add's the avoid force to desiredDirection (if needed)
+     * @param {Circle} circle 
+     */
+    avoidCircle(circle) {
+        //...
+    }
+
+
+    /**
      * step's toward the point, return's callback(position)
      * @param {V2D} point
      * @param {Function} callback
