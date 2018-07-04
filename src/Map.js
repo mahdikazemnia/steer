@@ -1,5 +1,6 @@
 const V2D = require('vectors-2d');
 const Mover = require('./Mover.js');
+const Circle = require('./Obstacles/Circle.js');
 
 class Map {
 
@@ -27,9 +28,27 @@ class Map {
      */
     makeMover(settings) {
 
-         settings.position = new V2D(settings.x, settings.y);
-         return new Mover(settings, this.chain);
- 
+        settings.position = new V2D(settings.x, settings.y);
+        return new Mover(settings, this.chain);
+
+    }
+
+    /**
+       * make's a new obstacle and automatically add's it to the chain
+       * @param {Object} settings 
+       */
+    makeObstacle(settings) {
+
+        // obstacle type
+        let type = settings.type.toLowerCase();
+
+        if (type == 'Circle') { // Circle
+            let position = new V2D(settings.position);
+            let radius = settings.radius;
+            return new Circle(position, radius, this.chain);
+        }
+        // TODO: add other obstacle types
+
     }
 
 }
