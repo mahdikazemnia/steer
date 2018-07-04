@@ -1,6 +1,7 @@
+
 class Circle {
 
-    constructor(position, radius, chain) {
+    constructor(settings, chain) {
 
         // join the chain
         this.info = {};
@@ -10,10 +11,10 @@ class Circle {
         this.chain.obstacles.push(this.info);
 
         // position
-        this.position = position;
+        this.position = new V2D(settings.position);
 
         // radius (size)
-        this.radius = radius;
+        this.radius = settings.radius;
 
         // attach referencable share info (objects)
         this.info.position = this.position;

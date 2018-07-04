@@ -27,10 +27,7 @@ class Map {
      * @param {Object} settings 
      */
     makeMover(settings) {
-
-        settings.position = new V2D(settings.x, settings.y);
         return new Mover(settings, this.chain);
-
     }
 
     /**
@@ -43,7 +40,6 @@ class Map {
         let type = settings.type.toLowerCase();
 
         if (type == 'Circle') { // Circle
-            let position = new V2D(settings.position);
             let radius = settings.radius;
             return new Circle(position, radius, this.chain);
         }

@@ -13,12 +13,12 @@ class Mover {
         this.chain.movers.push(this.info);
 
         // position
-        this.position = settings.position;
+        this.position = new V2D(settings.position);
 
         // speed
-        this.maxSpeed = settings.maxSpeed; 
-        this.minSpeed = settings.minSpeed; 
-        this.currentSpeed = 0; 
+        this.maxSpeed = settings.maxSpeed;
+        this.minSpeed = settings.minSpeed;
+        this.currentSpeed = 0;
         this.stepRate = 60;
         this.stepSize = 0;
 
@@ -66,7 +66,10 @@ class Mover {
         // seek
         this.seek(point);
 
-        // set the direction (no avoids for now)
+        // avoid(s)
+        this.chain.obstacles.forEach(o => this.avoid(o));
+
+        // set the direction
         this.currentDirection.add(this.desiredDirection);
 
         // step forward :)
