@@ -107,10 +107,19 @@ class Mover {
 
                 // distance between "close" and "edge"
                 let conflict = edge.distanceTo(close);
-                
+
+                // avoidance force
+                let force = edge.subtract(close).resize(this.avoidRatio * conflict / distance);
+                this.desiredDirection.add(force);
+
+                return true;
+
             }
 
         }
+
+        // no avoids?
+        return false;
 
     }
 
