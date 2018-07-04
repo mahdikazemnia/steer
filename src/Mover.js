@@ -85,10 +85,24 @@ class Mover {
         let rotateRadius = this.stepSize / (2 * Math.cos((180 - this.maxRotation) / 2 / 180 * Math.PI));
 
         // calculate the caution margin based on radius
-        let margin = Math.sqrt(circle.radius * circle.radius + 2 * circle.radius * rotateRadius) - circle.radius; 
+        let margin = Math.sqrt(circle.radius * circle.radius + 2 * circle.radius * rotateRadius) - circle.radius;
 
         // in caution margin ?
         if (circle.radius + margin + this.radius > distance) {
+
+            // crossed incline
+            let i2 = -1 / i;
+
+            // the closest point on mover's direction to circle's 
+            let close = new V2D(0, 0);
+            close.x = (circle.position.x - (i * this.position.y) + (i * i * this.position.x) + (i * circle.position.y)) / ((i * i) + 1);
+            close.y = circle.position.y + ((close.x - circle.position.x) * i2);
+
+            // collision ?
+            if (close.distanceTo(circle.position) < circle.radius + this.radius) {
+                
+            }
+
         }
 
     }
