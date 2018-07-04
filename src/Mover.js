@@ -74,7 +74,23 @@ class Mover {
      * @param {Circle} circle 
      */
     avoidCircle(circle) {
-        //...
+
+        // incline
+        let i = this.seekDirection.incline;
+
+        // distance from here to circle's center
+        let distance = this.position.distanceTo(circle.position);
+
+        // if the mover would rotate with maximum ability, the circle would have this radius
+        let rotateRadius = this.stepSize / (2 * Math.cos((180 - this.maxRotation) / 2 / 180 * Math.PI));
+
+        // calculate the caution margin based on radius
+        let margin = Math.sqrt(circle.radius * circle.radius + 2 * circle.radius * rotateRadius) - circle.radius; 
+
+        // in caution margin ?
+        if (circle.radius + margin + this.radius > distance) {
+        }
+
     }
 
 
