@@ -100,6 +100,13 @@ class Mover {
 
             // collision ?
             if (close.distanceTo(circle.position) < circle.radius + this.radius) {
+
+                // the "edge point" on circle
+                let sign = Math.sign(close.x - circle.position.x);
+                let edge = (new V2D(sign, sign * i2)).resize(circle.radius + this.radius).add(circle.position);
+
+                // distance between "close" and "edge"
+                let conflict = edge.distanceTo(close);
                 
             }
 
