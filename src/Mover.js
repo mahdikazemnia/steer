@@ -16,18 +16,22 @@ class Mover {
         this.position = settings.position;
 
         // speed
-        this.maxSpeed = settings.maxSpeed; // current speed
+        this.maxSpeed = settings.maxSpeed; 
+        this.minSpeed = settings.minSpeed; 
+        this.currentSpeed = 0; 
+        this.stepRate = 60;
+        this.stepSize = 0;
 
-        // velocity (current, deisred, seek)
-        this.currentVelocity = new V2D(0, 0);
-        this.desiredVelocity = new V2D(0, 0);
-        this.seekVelocity = new V2D(0, 0);
+        // direction (current, deisred, seek)
+        this.currentDirection = new V2D(0, 0);
+        this.desiredDirection = new V2D(0, 0);
+        this.seekDirection = new V2D(0, 0);
 
         // add referenced values to the chain
         this.info.position = this.position;
-        this.info.currentVelocity = this.currentVelocity;
-        this.info.desiredVelocity = this.desiredVelocity;
-        this.info.seekVelocity = this.seekVelocity;
+        this.info.currentDirection = this.currentDirection;
+        this.info.desiredDirection = this.desiredDirection;
+        this.info.seekDirection = this.seekDirection;
 
         // seek and avoid ratios
         this.seekRatio = settings.seekRatio;
@@ -41,13 +45,13 @@ class Mover {
     // ---------------------------------------
 
     /**
-     * add's the seek force to the desiredVelocity
+     * add's the seek force to the desiredDirection
      * @param {V2D} point 
      */
     seek(point) {
         let force = point.clone().subtract(this.position).resize(this.seekRatio);
-        this.seekVelocity.reset(force.x, force.y);
-        this.desiredVelocity.add(force);
+        this.seekDirection.reset(force.x, force.y);
+        this.desiredDirection.add(force);
     }
 
     /**
@@ -56,18 +60,17 @@ class Mover {
      * @param {Function} callback
      */
     stepToward(point, callback) {
-
-        // reset the desiredVelocity
-        this.desiredVelocity.reset(0, 0);
+        // reset the desiredDirection
+        this.desiredDirection.reset(0, 0);
 
         // seek
         this.seek(point);
 
-        // set the velocity (no avoids for now)
-        this.currentVelocity.reset(this.desiredVelocity.x, this.desiredVelocity.y);
+        // set the direction (no avoids for now)
+        this.currentDirection.add(this.desiredDirection);
 
         // step forward :)
-        this.position.add(this.currentVelocity);
+        this.position.add(this.currentDirection.limit(0, this.maxSpeed));
 
         // callback
         callback(this.position);
