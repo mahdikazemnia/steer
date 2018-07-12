@@ -55,9 +55,8 @@ class Mover {
     }
 
     get currentMaxRotation() {
-        if (this.currentSpeed < this.minSpeed) return this.maxRotation;
-        // ...
-
+        if (this.currentSpeed <= this.minSpeed) return this.maxRotation;
+        return -Math.sqrt(this.currentSpeed - this.minSpeed) / this.rotationControlRatio + this.maxRotation; // TODO: explain
     }
 
     // ---------------------------------------
