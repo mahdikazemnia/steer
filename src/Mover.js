@@ -22,6 +22,11 @@ class Mover {
         this.maxSpeed = settings.maxSpeed;
         this.minSpeed = settings.minSpeed;
         this.currentSpeed = 0;
+        this.accPower = settings.accPower;
+        this.decPower = settings.decPower;
+        this.cautionRange = settings.cautionRange; // [percent, percent]
+
+        // steps
         this.stepRate = 60;
         this.stepSize = 0;
 
@@ -57,6 +62,32 @@ class Mover {
     get currentMaxRotation() {
         if (this.currentSpeed <= this.minSpeed) return this.maxRotation;
         return -Math.sqrt(this.currentSpeed - this.minSpeed) / this.rotationControlRatio + this.maxRotation; // TODO: explain
+    }
+
+    // ---------------------------------------
+    //             speed control
+    // ---------------------------------------
+
+
+    /**
+     * decide's to change and how to change the speed
+     */
+    normalizeSpeed() {
+        // ...
+    }
+
+    /**
+     * increases speed by accPower
+     */
+    accelerate() {
+        this.currentSpeed += this.accPower;
+    }
+
+    /**
+     * decreases speed by decPower
+     */
+    decelerate() {
+        this.currentSpeed -= this.decPower;
     }
 
     // ---------------------------------------
