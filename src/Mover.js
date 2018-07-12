@@ -24,7 +24,7 @@ class Mover {
         this.currentSpeed = 0;
         this.accPower = settings.accPower;
         this.decPower = settings.decPower;
-        this.cautionRange = settings.cautionRange; // [percent, percent]
+        this.cautionRange = settings.cautionRange; // {from, to}
 
         // steps
         this.stepRate = 60;
