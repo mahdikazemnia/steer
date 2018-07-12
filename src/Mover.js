@@ -25,6 +25,11 @@ class Mover {
         this.stepRate = 60;
         this.stepSize = 0;
 
+        // rotation
+        this.maxRotation = settings.maxRotation;
+        this.minRotation = settings.minRotation;
+        this.rotationControlRatio = -Math.sqrt(this.maxSpeed - this.minSpeed) / (this.minRotation - this.maxRotation); // TODO: explain 
+
         // direction (current, deisred, seek)
         this.currentDirection = new V2D(0, 0);
         this.desiredDirection = new V2D(0, 0);
@@ -45,7 +50,15 @@ class Mover {
     // ---------------------------------------
     //          getters and setters
     // ---------------------------------------
-    get stepSize() { return this.currentSpeed / this.stepRate; }
+    get stepSize() {
+        return this.currentSpeed / this.stepRate;
+    }
+
+    get currentMaxRotation() {
+        if (this.currentSpeed < this.minSpeed) return this.maxRotation;
+        // ...
+
+    }
 
     // ---------------------------------------
     //              operations
@@ -58,7 +71,7 @@ class Mover {
     seek(point) {
         let force = point.clone().subtract(this.position).resize(this.seekRatio);
         this.seekDirection.reset(force.x, force.y);
-        this.desiredDirection.add(force);
+        this.desiredDirection.add(this.seekDirection);
     }
 
     /**
