@@ -71,9 +71,15 @@ class Mover {
 
     /**
      * decide's to change and how to change the speed
+     * @param {Number} rotation - current desired rotation (limited already)
      */
-    normalizeSpeed() {
-        // ...
+    normalizeSpeed(rotation) {
+        let rotationPercent = rotation / this.currentMaxRotation * 100;
+        if (rotationPercent >= this.cautionRange.to) { // unstable rotation
+            this.decelerate();
+        } else if (rotationPercent <= this.cautionRange.from) { // too much cautious
+            this.accelerate();
+        }
     }
 
     /**
