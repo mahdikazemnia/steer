@@ -186,6 +186,7 @@ class Mover {
      * @param {Function} callback
      */
     stepToward(point, callback) {
+
         // reset the desiredDirection
         this.desiredDirection.reset(0, 0);
 
@@ -195,11 +196,14 @@ class Mover {
         // avoid(s)
         this.chain.obstacles.forEach(o => this.avoid(o));
 
-        // set the direction
-        this.currentDirection.add(this.desiredDirection);
+        let currentMaxRotation = this.currentMaxRotation;
+        let rotation = this.desiredDirection.angle - this.currentDirection.angle;
+        rotation = rotation > 180 ? rotation - 360 : (rotation < -180 ? rotation + 360 : rotation);
+        rotation = Math.abs(rotation) > currentMaxRotation ? currentMaxRotation * Math.sign(rotation) : rotation;
+
 
         // step forward :)
-        this.position.add(this.currentDirection.limit(0, this.maxSpeed));
+        // this.position.add();
 
         // callback
         callback(this.position);
