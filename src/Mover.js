@@ -28,7 +28,6 @@ class Mover {
 
         // steps
         this.stepRate = 60;
-        this.stepSize = 0;
 
         // rotation
         this.maxRotation = settings.maxRotation;
