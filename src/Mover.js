@@ -73,7 +73,7 @@ class Mover {
      * @param {Number} rotation - current desired rotation (limited already)
      */
     normalizeSpeed(rotation) {
-        let rotationPercent = rotation / this.currentMaxRotation * 100;
+        let rotationPercent = Math.abs(rotation / this.currentMaxRotation * 100);
         if (rotationPercent >= this.cautionRange.to) { // unstable rotation
             this.decelerate();
         } else if (rotationPercent <= this.cautionRange.from) { // too much cautious
