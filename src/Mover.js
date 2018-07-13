@@ -203,7 +203,7 @@ class Mover {
         rotation = Math.abs(rotation) > currentMaxRotation ? currentMaxRotation * Math.sign(rotation) : rotation;
 
         // rotate
-        this.desiredDirection.rotate(rotation);
+        this.currentDirection.rotate(rotation);
 
         // normalize the speed
         this.normalizeSpeed(rotation);
