@@ -201,9 +201,17 @@ class Mover {
         rotation = Math.abs(rotation) > 180 ? rotation - 360 * Math.sign(rotation) : rotation;
         rotation = Math.abs(rotation) > currentMaxRotation ? currentMaxRotation * Math.sign(rotation) : rotation;
 
+        // rotate
+        this.desiredDirection.rotate(rotation);
 
-        // step forward :)
-        // this.position.add();
+        // normalize the speed
+        this.normalizeSpeed(rotation);
+
+        // resize the desired direction
+        this.desiredDirection.resize(this.stepSize);
+        
+        // step forward
+        this.position.add(this.desiredDirection);
 
         // callback
         callback(this.position);
