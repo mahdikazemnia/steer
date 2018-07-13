@@ -138,13 +138,13 @@ class Mover {
         let distance = this.position.distanceTo(circle.position);
 
         // if the mover would rotate with maximum ability, the circle would have this radius
-        let rotateRadius = this.stepSize / (2 * Math.cos((180 - this.maxRotation) / 2 / 180 * Math.PI));
+        let rotateRadius = this.stepSize / (2 * Math.cos((180 - this.currentMaxRotation) / 2 / 180 * Math.PI));
 
         // calculate the caution margin based on radius
-        let margin = Math.sqrt(circle.radius * circle.radius + 2 * circle.radius * rotateRadius) - circle.radius;
+        let cautionMargin = Math.sqrt(circle.radius * circle.radius + 2 * circle.radius * rotateRadius) - circle.radius;
 
         // in caution margin ?
-        if (circle.radius + margin + this.radius > distance) {
+        if (circle.radius + cautionMargin + this.radius > distance) {
 
             // crossed incline
             let i2 = -1 / i;
