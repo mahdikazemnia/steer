@@ -35,7 +35,7 @@ class Mover {
         this.rotationControlRatio = -Math.sqrt(this.maxSpeed - this.minSpeed) / (this.minRotation - this.maxRotation); // TODO: explain 
 
         // direction (current, deisred, seek)
-        this.currentDirection = new V2D(0, 0);
+        this.currentDirection = new V2D(1, 0);
         this.desiredDirection = new V2D(0, 0);
         this.seekDirection = new V2D(0, 0);
 
@@ -210,7 +210,7 @@ class Mover {
 
         // resize the desired direction
         this.currentDirection.resize(this.stepSize);
-        
+
         // step forward
         this.position.add(this.currentDirection);
 
