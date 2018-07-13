@@ -209,10 +209,10 @@ class Mover {
         this.normalizeSpeed(rotation);
 
         // resize the desired direction
-        this.desiredDirection.resize(this.stepSize);
+        this.currentDirection.resize(this.stepSize);
         
         // step forward
-        this.position.add(this.desiredDirection);
+        this.position.add(this.currentDirection);
 
         // callback
         callback(this.position);
