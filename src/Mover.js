@@ -198,7 +198,7 @@ class Mover {
 
         let currentMaxRotation = this.currentMaxRotation;
         let rotation = this.desiredDirection.angle - this.currentDirection.angle;
-        rotation = rotation > 180 ? rotation - 360 : (rotation < -180 ? rotation + 360 : rotation);
+        rotation = Math.abs(rotation) > 180 ? rotation - 360 * Math.sign(rotation) : rotation;
         rotation = Math.abs(rotation) > currentMaxRotation ? currentMaxRotation * Math.sign(rotation) : rotation;
 
 
