@@ -86,6 +86,7 @@ class Mover {
      */
     accelerate() {
         this.currentSpeed += this.accPower;
+        this.currentSpeed = this.currentSpeed > this.maxSpeed ? this.maxSpeed : this.currentSpeed;
     }
 
     /**
@@ -93,6 +94,7 @@ class Mover {
      */
     decelerate() {
         this.currentSpeed -= this.decPower;
+        this.currentSpeed = this.currentSpeed < this.decPower ? this.decPower : this.currentSpeed;
     }
 
     // ---------------------------------------
