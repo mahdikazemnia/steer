@@ -208,7 +208,7 @@ class Mover {
         // normalize the speed
         this.normalizeSpeed(rotation);
 
-        // resize the desired direction
+        // resize the current direction
         this.currentDirection.resize(this.stepSize);
 
         // step forward
