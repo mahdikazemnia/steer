@@ -37,7 +37,7 @@ class Map {
     makeObstacle(settings) {
 
         // obstacle type
-        let type = settings.type.toLowerCase();
+        let type = settings.type;
 
         if (type == 'Circle') { // Circle
             return new Circle(settings, this.chain);
