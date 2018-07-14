@@ -40,8 +40,7 @@ class Map {
         let type = settings.type.toLowerCase();
 
         if (type == 'Circle') { // Circle
-            let radius = settings.radius;
-            return new Circle(position, radius, this.chain);
+            return new Circle(settings, this.chain);
         }
         // TODO: add other obstacle types
 
