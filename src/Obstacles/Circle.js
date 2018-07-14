@@ -1,3 +1,4 @@
+const V2D = require('vectors-2d');
 
 class Circle {
 
